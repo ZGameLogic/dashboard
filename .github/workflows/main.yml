@@ -3,6 +3,8 @@ name: React-Dashboard
 on:
   push:
     branches: [main]
+env:
+  KUBERNETES_NAME: dashboard
 
 jobs:
   build:
@@ -45,3 +47,17 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/arm/v7
+  Kubernetes:
+    runs-on: PiServer
+    needs: build
+    steps:
+      - name: Checkout Kubernetes Directory
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: 'kubernetes/'
+      - name: Apply Kubernetes Configuration
+        run: sudo kubectl apply -f kubernetes/
+      - name: Rolling update
+        run: sudo kubectl rollout restart deployment ${{ env.KUBERNETES_NAME }}
+      - name: Wait for readiness probe
+        run: sudo kubectl rollout status deployment ${{ env.KUBERNETES_NAME }} --timeout=600s
