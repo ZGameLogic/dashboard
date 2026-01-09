@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: dashboard
-          image: ghcr.io/zgamelogic/dashboard:master
+          image: ghcr.io/zgamelogic/dashboard:main
           imagePullPolicy: Always
           env:
             - name: TZ
