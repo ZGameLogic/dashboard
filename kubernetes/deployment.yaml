@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard
+  labels:
+    app: dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashboard
+  template:
+    metadata:
+      name: dashboard
+      labels:
+        app: dashboard
+    spec:
+      containers:
+        - name: dashboard
+          image: ghcr.io/zgamelogic/dashboard:master
+          imagePullPolicy: Always
+          env:
+            - name: TZ
+              value: "America/Chicago"
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: ghcr-secret
