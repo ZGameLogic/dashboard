@@ -1,7 +1,10 @@
+import { SiUbiquiti } from "react-icons/si";
+import LinkCard from "./components/LinkCard.tsx";
+
 function App() {
   return (
     <>
-      <p>Ben</p>
+        <LinkCard link={'https://unifi.ui.com'} title={'Unifi UI'} icon={<SiUbiquiti size={60}/>} />
     </>
   )
 }
