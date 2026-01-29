@@ -1,5 +1,5 @@
 import { SiUbiquiti, SiSynology, SiTruenas } from "react-icons/si";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaAws } from "react-icons/fa";
 import LinkCard from "./components/LinkCard.tsx";
 import {Stack} from "@mui/material";
 
@@ -10,6 +10,7 @@ function App() {
         <LinkCard link={'http://192.168.1.11:5000'} title={'Synology NAS'} icon={<SiSynology size={60}/>} />
         <LinkCard link={'http://192.168.1.12'} title={'TrueNAS'} icon={<SiTruenas size={60}/>} />
         <LinkCard link={'https://github.com/ZGameLogic'} title={'Github'} icon={<FaGithub size={60}/>} />
+        <LinkCard link={'https://us-east-1.console.aws.amazon.com'} title={'AWS'} icon={<FaAws size={60}/>} />
       </Stack>
   )
 }
